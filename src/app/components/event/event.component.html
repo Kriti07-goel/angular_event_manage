@@ -1,1 +1,34 @@
-
+<div style="margin-top: 30px;">
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <div>
+                <span class="time float-right">{{value.time}}</span>
+            </div>
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <div class="header">
+                <span class="title">{{value.subject}}</span>
+                <mdb-badge danger="true" class="text-center float-right" (click) = "handleDeleteEvent()">-</mdb-badge>
+                
+            </div>
+            <hr>
+            <div class="location margin-top-20" *ngIf="value.location"><p>
+                <mdb-icon fas icon="location-arrow margin-right-10"></mdb-icon>
+                Location : {{value.location}}
+            </p></div>
+            <div class="location margin-top-20" *ngIf="!value.location">
+                Location not defined
+            </div>
+        </div>
+    </div>
+    
+   
+    <div style="margin-top: 20px;" *ngIf= "value.description">
+        <p class="grey-background">
+            Description : {{value.description}}
+        </p>
+    </div>
+    <div style="margin-top: 20px;" class="grey-background" *ngIf= "!value.description">
+        Description not added yet.
+    </div>
+</div>

@@ -1,0 +1,210 @@
+
+<div class="container">
+  <div class="header">
+    <div class="disp-inline">
+      <h1>
+        My events
+      </h1>
+    </div>
+    <div class="float-right margin-top-20" (click)="basic.show()">
+      <i class="fas fa-redo margin-right-10"></i>
+      <a>Sync with my calendar</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+      <div *ngFor ="let event of events; let i = index">
+          <app-event [value] = "event" (deleteEventInstance) = "deleteEvent($event)"></app-event>
+      </div>
+      <div class="add-event-section text-center">
+        <button class="btn btn-primary hover-btn" (click)="frame.show()">ADD EVENT</button>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+        <h3 class="text-uppercase my-3">Schedule</h3>
+        <h6 class="my-3">
+          It's going to be busy that today. You have
+          <b> {{ events.length }} events </b> today.
+        </h6>
+        <h1 class="my-3">
+          <div class="row">
+            <div class="col-3 text-center">
+              <mdb-icon fas icon="sun"></mdb-icon>
+            </div>
+            <div class="col-9 ">Sunny</div>
+          </div>
+          <div class="row">
+            <div class="col-3 text-center">
+              <mdb-icon fas icon="thermometer-three-quarters"></mdb-icon>
+            </div>
+            <div class="col-3 ">23°C</div>
+          </div>
+        </h1>
+        <p>
+          Don't forget your sunglasses. Today will dry and sunny, becoming warm
+          in the afternoon with temperatures of between 20 and 25 degrees.
+        </p>
+    </div>
+    </div>
+</div>
+<!--Modal-->
+<div mdbModal
+  #frame="mdbModal"
+  class="modal fade top"
+  id="frameModalTop"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+  style="overflow-y: auto">
+  <!--Dialog-->
+  <div class="modal-dialog modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header text-center">
+        <h4 class="modal-title white-text w-100 font-weight-bold py-2">
+          Schedule appointment
+        </h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="frame.hide()">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <!--Body-->
+        <div class="modal-body">
+          <div class="md-form mb-5">
+            <mdb-icon far icon="clock"></mdb-icon>
+            <input
+              type="text"
+              id="time"
+              class="form-control"
+              mdbInput
+              [formControl]="timeInput"
+            />
+            <label for="time">Time</label>
+          </div>
+        
+          <div class="md-form">
+            <mdb-icon fas icon="edit"></mdb-icon>
+            <input
+              type="text"
+              id="subject"
+              class="form-control"
+              mdbInput
+              [formControl]="subjectInput"
+            />
+            <label for="subject">Subject</label>
+          </div>
+        
+          <div class="md-form mb-5">
+            <mdb-icon far icon="map"></mdb-icon>
+            <input
+              type="text"
+              id="location"
+              class="form-control"
+              mdbInput
+              [formControl]="locationInput"
+            />
+            <label for="location">Location (optional) </label>
+          </div>
+        
+          <div class="md-form">
+            <mdb-icon fas icon="sticky-note"></mdb-icon>
+        
+            <input
+              type="text"
+              id="description"
+              class="form-control"
+              mdbInput
+              [formControl]="descriptionInput"
+            />
+            <label for="description">Description (optional) </label>
+          </div>
+        </div>
+        <!--/.Body-->
+      </div>
+      <!--/.Body-->
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <button
+          type="button"
+          (click) = "addNewEvent()"
+          color="info"
+          class="btn add-button">
+          Add
+        </button>
+      </div>
+      <!--Footer-->
+    </div>
+    <!--/.Content-->
+  </div>
+  <!--/.Dialog-->
+</div>
+<!--/.Modal-->
+
+
+<div mdbModal
+  #basic="mdbModal"
+  class="modal fade top"
+  id="frameModalTop"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+  style="overflow-y: auto">
+  <!--Dialog-->
+  <div class="modal-dialog modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header text-center">
+        <h4 class="modal-title white-text w-100 font-weight-bold py-2">
+          Sync with calendar
+        </h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="basic.hide()">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+          <div class="text-center">
+              <img src="././assets/success.png" height="300px">
+              <div>
+                Events synchronized with calendar sucessfully!!
+              </div>
+            </div>
+      </div>
+      <!--/.Body-->
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <button
+          type="button"
+          (click) = "basic.hide()"
+          color="info"
+          class="btn add-button">
+          Close
+        </button>
+      </div>
+      <!--Footer-->
+    </div>
+    <!--/.Content-->
+  </div>
+  <!--/.Dialog-->
+</div>
+<!-- /Start your project here-->
